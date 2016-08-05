@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>献血者联网屏蔽管理平台 - 穿越软件(PAss Soft)</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- Webfont -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <!-- Plugins -->
+    <link rel="stylesheet" href="assets/js/rickshaw/css/rickshaw.min.css">
+    <link rel="stylesheet" href="assets/js/morris/css/morris.css">
+    <link rel="stylesheet" href="assets/js/datatables/css/dataTables.bootstrap.css">
+    <!-- Main -->
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link rel="stylesheet" href="assets/css/main.custom.css" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="assets/js/html5.min.js"></script>
+    <script type="text/javascript" src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .mr10{
+            margin-right: 10px;
+        }
+        .pr0{
+            padding-right: 0;
+        }
+        .h700{
+            height: 700px;
+        }
+        .h300{
+            height:250px;
+        }
+
+        .h640{
+            height:640px;
+        }
+
+        .overflow-y-scroll{
+            overflow-y: scroll;
+        }
+
+        .pl5{
+            padding-left: 5px;
+        }
+
+        .pr10{
+            padding-right: 10px;
+        }
+        body .navbar .navbar-nav.side-nav li.navigation .menu  li a:hover {
+            background: transparent;
+            color: #ff0;
+        }
+        body .navbar .navbar-nav.side-nav li.navigation .menu li.active a{
+            background: transparent;
+            color: #ff0;
+        }
+
+    </style>
+</head>
+<body class="main solid-bg-4">
+<!-- Preloader -->
+<div class="mask"><div id="loader">加载中...</div></div>
+
+<div id="wrap">
+    <div class="row">
+        <div class="navbar navbar-top-bg navbar-fixed-top navbar-transparent-black mm-fixed-top"></div>
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+
+
+            <!-- Branding -->
+            <div class="navbar-header col-md-2">
+                <a class="navbar-brand fixpng">
+                    <strong>献血者联网屏蔽管理平台</strong>
+                </a>
+                <div class="sidebar-collapse">
+                    <a href="#">
+                        <i class="fa fa-reorder"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Branding end -->
+
+            <!-- .nav-collapse -->
+            <div class="navbar-collapse">
+                <!-- Quick Actions -->
+                <ul class="nav navbar-nav quick-actions">
+                    <li class="navbar-item divided">
+                        <a class="button" href="#" title="系统信息">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-transparent-black" id="messageNum">0</span>
+                        </a>
+                    </li>
+
+                    <li class="navbar-item divided user" id="current-user">
+                        <a class="options" href="#">
+                            <i class="fa fa-user"></i> <span class="username-at-facilityname">测试账号(江苏省血液中心)</span>
+                        </a>
+                    </li>
+
+                    <li class="navbar-item divided" id="user-signout">
+                        <a class="button" href="#">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="label label-transparent-black">安全退出</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /Quick Actions -->
+
+                <!-- Sidebar -->
+                <ul class="nav navbar-nav side-nav" id="sidebar" tabindex="5000" style="overflow: hidden; outline: none;">
+
+                    <li class="navbar-item navigation" id="navigation" style="width:250px;">
+                        <a href="#" class="sidebar-toggle" data-toggle="#navigation"><span> 系统导航 </span><i class="fa fa-angle-up"></i></a>
+
+                        <ul class="menu ">
+
+                            <li class="active">
+                                <a href="index.html">
+                                    <i class=" fa fa-dashboard"></i> 系统看板
+                                    <div class="after"></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="banlist-verify.html" >
+                                    <i class="fa fa-search " ></i> 黑名单在线查证
+                                </a>
+                            </li>
+                            <li>
+                                <a href="banlist-register.html" >
+                                    <i class="fa fa-edit "></i> 黑名单手工填报
+                                </a>
+                            </li>
+                            <li>
+                                <a href="banlist-record.html" >
+                                    <i class="fa fa-list"></i> 黑名单上报列表
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="network-monitor.html">
+                                    <i class="fa fa-eye "></i> 联网状态监控
+                                </a>
+                            </li>
+                            <li>
+                                <a href="banlist-upload-log.html" >
+                                    <i class="fa fa-list-alt "></i> 屏蔽数据上传日志
+                                </a>
+                            </li>
+                            <!--  <li>
+                                  <a href="interval-request-log.html" >
+                                      <i class="fa fa-list-ol "></i> 间隔期轮询请求日志
+                                  </a>
+                              </li>-->
+                            <li >
+                                <a href="statistics-facility.html" >
+                                    <i class="fa fa-pie-chart " ></i> 屏蔽来源统计
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+                <!-- Sidebar end -->
+            </div>
+            <!--/.nav-collapse -->
+
+
+
+
+
+
+        </div>
+        <!-- Fixed navbar end -->
+
+        <!-- Page content -->
+        <div id="content" class="col-md-12">
+            <!-- page header -->
+            <div class="pageheader">
+                <h2><i class="fa fa-dashboard"></i> 系统看板 <span>监控系统运行及数据情况</span></h2>
+                <div class="breadcrumbs">
+                    <ol class="breadcrumb">
+                        <li>您当前的位置</li>
+                        <li class="active"><i class="before"></i>系统看板</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /page header -->
+
+            <!-- content main container -->
+            <div class="main">
+
+                <!-- row -->
+                <div class="row">
+                    <!-- col 12 -->
+                    <div class="col-lg-8 col-md-12 pr0">
+                        <!-- tile -->
+                        <section class="tile transparent">
+
+                            <!-- tile header -->
+                            <div class="tile-header color transparent-black textured rounded-top-corners">
+                                <h1><strong>近一周</strong> 运行情况</h1>
+                                <div class="controls">
+                                    <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                                </div>
+                            </div>
+                            <!-- /tile header -->
+
+                            <!-- tile widget -->
+                            <div class="tile-widget color transparent-black textured">
+                                <div id="statistics-week" class="chart statistics" style="height: 250px;"></div>
+                            </div>
+                            <!-- /tile widget -->
+
+                        </section>
+                        <!-- /tile -->
+
+                        <section class="tile transparent">
+                            <div class="tile-body color transparent-white rounded-bottom-corners">
+                                <div class="row">
+                                    <ul class="inline">
+
+                                        <li class="col-md-7 col-sm-12 col-xs-12 text-center">
+
+                                            <h4 class="underline text-left"><strong>近一周</strong> 运行汇总</h4>
+
+                                            <div class="inner-container inline">
+                                                <div data-percent="100" data-size="140" class="pie-chart inline" data-scale-color="false" data-track-color="rgba(0,0,0,0)" data-bar-color="#ffffff" data-line-width="5">
+                                                    <div class="text-center">
+                                                        <i class="fa fa-search fa-5x"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="chart-overall text-center medium-thin uppercase"><span class="big-medium animate-number mr10" data-value="1234" data-animation-duration="2500">6730</span>轮询请求</p>
+                                            </div>
+
+
+                                            <div class="inner-container inline">
+                                                <div data-percent="85" data-size="140" class="pie-chart inline" data-scale-color="false" data-track-color="rgba(0,0,0,0)" data-bar-color="rgba(0,0,0,.4)" data-line-width="5">
+                                                    <div class="text-center">
+                                                        <span><i class="fa fa-list fa-5x color-transparent-black"></i></span>
+                                                    </div>
+                                                </div>
+                                                <p class="chart-overall text-center medium-thin uppercase color-transparent-black"><span class="big-medium animate-number mr10" data-value="6730" data-animation-duration="2500">1234</span>黑名单</p>
+                                            </div>
+
+                                        </li>
+
+                                        <li class="col-md-5 col-sm-12 col-xs-12">
+                                            <h4 class="underline">黑名单来源（机构）汇总</h4>
+                                            <div class="overflow-y-scroll h300 pl5 pr10">
+
+                                                <ul class="progress-list">
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">江苏省血液中心</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="40" data-animation-duration="1500">10</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-green animate-progress-bar" data-percentage="40%" style="width: 10%;"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">常州市中心血站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="38" data-animation-duration="1000">20</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-cyan animate-progress-bar" data-percentage="35%" style="width: 20%;"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">常州市中心血站金坛分站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="12" data-animation-duration="800">15</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-amethyst animate-progress-bar" data-percentage="12%" style="width: 15%;"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">常州市中心血站溧阳分站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="7" data-animation-duration="600">10</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-orange animate-progress-bar" data-percentage="7%" style="width: 10%;"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">无锡市红十字中心血站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="6" data-animation-duration="400">35</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-red animate-progress-bar" data-percentage="6%" style="width: 35%;"></div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">常州市中心血站金坛分站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="12" data-animation-duration="800">15</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-amethyst animate-progress-bar" data-percentage="12%" style="width: 15%;"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">常州市中心血站溧阳分站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="7" data-animation-duration="600">10</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-orange animate-progress-bar" data-percentage="7%" style="width: 10%;"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="details">
+                                                            <div class="title">无锡市红十字中心血站</div>
+                                                        </div>
+                                                        <div class="status pull-right">
+                                                            <span class="animate-number" data-value="6" data-animation-duration="400">35</span>个
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="progress progress-little">
+                                                            <div class="progress-bar progress-bar-red animate-progress-bar" data-percentage="6%" style="width: 35%;"></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </section>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 h700">
+                        <section class="tile transparent">
+                            <!-- tile header -->
+                            <div class="tile-header color transparent-black textured rounded-top-corners">
+                                <h1>联网状态监控</h1>
+                                <div class="controls">
+                                    <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                                </div>
+                            </div>
+                            <div class="tile-widget color transparent-black textured  overflow-y-scroll h640 padding-top-0">
+                                <div class="table-responsive">
+                                    <table class="table table-datatable table-custom table-striped table-hover table-sortable text-center"
+                                           id="applyListDataTable">
+                                        <thead >
+                                        <tr>
+                                            <th class="text-center sort-alpha" >联网机构</th>
+
+                                            <th class="text-center sort-alpha sort-numeric" >监控时间</th>
+                                            <th class="text-center sort-alpha" >状态</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="applyListTBody">
+                                        <tr>
+                                            <td>江苏省血液中心</td>
+
+                                            <td>2015-10-20 09:00</td>
+                                            <td>
+                                                <label class="label label-success"><!--<i class="fa fa-check pr5"></i>-->正 常</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>南京红十字会</td>
+
+                                            <td>2015-10-20 09:00</td>
+                                            <td>
+                                                <label class="label label-success"><!--<i class="fa fa-check pr5"></i>-->正  常</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>常州市中心血站</td>
+
+                                            <td>2015-10-20 09:43</td>
+                                            <td>
+                                                <label class="label label-danger"><!--<i class="fa fa-remove pr5"></i>-->异  常</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>江苏省血液中心</td>
+
+                                            <td>2015-10-20 09:43</td>
+                                            <td>
+                                                <label class="label label-danger"><!--<i class="fa fa-remove pr5"></i>-->异  常</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>江苏省血液中心</td>
+
+                                            <td>2015-10-20 09:40</td>
+                                            <td>
+                                                <label class="label label-success"><!--<i class="fa fa-check pr5"></i>-->正 常</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>江苏省血液中心</td>
+
+                                            <td>2015-10-20 19:00</td>
+                                            <td>
+                                                <label class="label label-warning"><!--<i class="fa fa-question pr5"></i>-->未联网</label>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>泰州市中心血站</td>
+
+                                            <td>2015-10-22 09:40</td>
+                                            <td>
+                                                <label class="label label-success"><!--<i class="fa fa-check pr5"></i>-->正 常</label>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /content container: main -->
+    </div>
+    <!-- Page content end -->
+</div>
+</body>
+<!-- Basic libraries -->
+<script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap/bootstrap.min.js"></script>
+<!-- Include compiled plugins (below) as needed -->
+<script type="text/javascript" src="assets/js/moment/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="assets/js/nicescroll/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="assets/js/blockui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="assets/js/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="assets/js/rickshaw/raphael-min.js"></script> 
+<script type="text/javascript" src="assets/js/morris/morris.min.js"></script>
+<script type="text/javascript" src="assets/js/animate-numbers/jquery.animateNumbers.js"></script>
+<script type="text/javascript" src="assets/js/datatables/jquery.dataTables.min.js"></script>
+<!-- Main script file -->
+<script type="text/javascript" src="assets/js/main.min.js"></script>
+<!-- Page script -->
+<script type="text/javascript">
+    var WeekStatisticsFolt;
+    $(function(){
+
+        // Initialize flot chart
+        function initWeekStatistics(first){
+
+            var d1, d2;
+            //最初始的图表数据，无数据时自动为0
+            d1 = [ [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0] ];
+            d2 = [ [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0] ];
+
+            var queryStartTime = moment().subtract(7, 'days').format("YYYY-MM-DD 00:00:00");
+            var queryEndTime = moment().format("YYYY-MM-DD 23:59:59");
+            var days = {}; // 一个日期的哈希对照表
+            var ticks = []; //图表数据所需 [[1,"JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"]]
+            var today = moment();
+            for(var i=7; i>0; i--){
+                var dayString = (i==7) ? today.format("YYYY-MM-DD") : today.subtract(1, 'days').format("YYYY-MM-DD");
+                days[dayString] = i;
+                ticks.unshift([i, today.format("MM-DD")]);
+            }
+
+            //取数据
+            $.ajax({
+                type: "get", //get
+                url:  "/service/statistics/dataflow/lastweek.json",//接口地址
+                data: {start:queryStartTime, end: queryEndTime}, //数据
+                dataType: "json", //数据格式:JSON
+                beforeSend:function () {
+                    //nothing
+                },
+                error:function (data) {
+                    //查询失败
+                    alert("暂时无法连接服务器，查询失败。");
+                },
+                success:function (data) {
+                    //数据处理
+                    if(data && data.result){
+                        if(data.result.banlistUpload){
+                            $.each(data.result.banlistUpload, function(i, n){
+                                if(days.hasOwnProperty(n.day)){
+                                    var dkey =  days[n.day];
+                                    d1[dkey-1] = [dkey, n.amount];
+                                }
+                            });
+                        }
+                        if(data.result.intervalQuery){
+                            $.each(data.result.intervalQuery, function(i, n){
+                                if(days.hasOwnProperty(n.day)){
+                                    var dkey =  days[n.day];
+                                    d2[dkey-1] = [dkey, n.amount];
+                                }
+                            });
+                        }
+                    }
+
+                    var resizeWeekStatisticsFolt = function(){
+                        // redraw the graph in the correctly sized div
+                        WeekStatisticsFolt.resize();
+                        WeekStatisticsFolt.setupGrid();
+                        WeekStatisticsFolt.draw();
+                    };
+
+                    // flot chart generate
+                    WeekStatisticsFolt = $.plot($("#statistics-week"),
+                            [
+                                {
+                                    label: '黑名单数据上传',
+                                    data: d1,
+                                    lines: {lineWidth:3},
+                                    shadowSize:0,
+                                    color: '#ffffff'
+                                },
+                                {
+                                    label: "间隔期轮询请求",
+                                    data: d2,
+                                    animator: {steps: 99, duration: 500, start:200, direction: "right"},
+                                    lines: {
+                                        fill: .15,
+                                        lineWidth: 0
+                                    },
+                                    color:['#ffffff']
+                                },
+                                {
+                                    label: '黑名单数据上传',
+                                    data: d1,
+                                    points: { show: true, fill: true, radius:6,fillColor:"rgba(0,0,0,.5)",lineWidth:2 },
+                                    color: '#fff',
+                                    shadowSize:0
+                                },
+                                {
+                                    label: "间隔期轮询请求",
+                                    data: d2,
+                                    points: { show: true, fill: true, radius:6,fillColor:"rgba(255,255,255,.2)",lineWidth:2 },
+                                    color: '#fff',
+                                    shadowSize:0
+                                }
+                            ],
+                            {
+                                xaxis: {
+
+                                    tickLength: 0,
+                                    tickDecimals: 0,
+                                    min:1,
+                                    ticks: ticks,
+                                    font :{
+                                        lineHeight: 24,
+                                        weight: "300",
+                                        color: "#ffffff",
+                                        size: 14
+                                    }
+                                },
+
+                                yaxis: {
+                                    ticks: 4,
+                                    tickDecimals: 0,
+                                    tickColor: "rgba(255,255,255,.3)",
+
+                                    font :{
+                                        lineHeight: 13,
+                                        weight: "300",
+                                        color: "#ffffff"
+                                    }
+                                },
+
+                                grid: {
+                                    borderWidth: {
+                                        top: 0,
+                                        right: 0,
+                                        bottom: 1,
+                                        left: 1
+                                    },
+                                    borderColor: 'rgba(255,255,255,.3)',
+                                    margin:0,
+                                    minBorderMargin:0,
+                                    labelMargin:20,
+                                    hoverable: true,
+                                    clickable: true,
+                                    mouseActiveRadius:6
+                                },
+
+                                legend: { show: false}
+                            });
+
+                    if(first){
+
+                        $(window).resize(resizeWeekStatisticsFolt);
+                        $('#mmenu').on(
+                                "opened.mm",
+                                resizeWeekStatisticsFolt
+                        ).on(
+                                "closed.mm",
+                                resizeWeekStatisticsFolt
+                        );
+                    }
+
+                    // tooltips showing
+                    $("#statistics-week").bind("plothover", function (event, pos, item) {
+                        if (item) {
+                            var x = item.datapoint[0], y = item.datapoint[1];
+
+                            $("#tooltip").html('<h1 style="color: #418bca">' + ticks[x - 1][1] + '</h1>' + '<h4><strong>' + y + '</strong>' + ' ' + item.series.label+'</h4>')
+                                    .css({top: item.pageY-30, left: item.pageX+5})
+                                    .fadeIn(200);
+                        } else {
+                            $("#tooltip").hide();
+                        }
+                    });
+
+                }//end of success callback function
+            });//end of $.ajax
+
+
+        }
+
+        initWeekStatistics(true);
+
+        //tooltips options
+        $("<div id='tooltip'></div>").css({
+            position: "absolute",
+            //display: "none",
+            padding: "10px 20px",
+            "background-color": "#ffffff",
+            "z-index":"99999"
+        }).appendTo("body");
+
+        $('.pie-chart').easyPieChart();
+
+
+        $(".overflow-y-scroll").niceScroll({
+            cursorcolor:"#000000",
+            zindex:999999,
+            bouncescroll:true,
+            cursoropacitymax:0.15,
+            cursorborder:"",
+            cursorborderradius:7,
+            cursorwidth:"7px",
+            background:"rgba(0,0,0,.1)",
+            autohidemode:false
+
+        });
+        $(window).load(function(){
+            $("#loader").delay(500).fadeOut(300);
+            $(".mask").delay(800).fadeOut(200,function(){
+                widthLess1024();
+            })
+        });
+
+    });
+
+</script>
+</html>
